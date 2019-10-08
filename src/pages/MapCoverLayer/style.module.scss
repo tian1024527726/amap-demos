@@ -1,0 +1,15 @@
+// 这是自动生成的文件，可以修改。
+.content {
+  display: flex;
+  width: 100%;
+  background: #fff;
+
+  :global {
+    /* global style */
+    #map-container {
+      .amap-info-close {
+        display: none;
+      }
+    }
+  }
+}
