@@ -9,6 +9,9 @@ let MapInstance = null;
 
 @inject('MapCoverLayer')
 class MapCoverLayer extends Component {
+  state = {
+    loading: true
+  }
 
   componentDidMount() {
     /* 初始化渲染执行之后调用,仅执行一次 */
@@ -22,6 +25,7 @@ class MapCoverLayer extends Component {
           resizeEnable: true,
           // zoom: 17
         });
+        let position = {};
         // 所有矩形的经纬度数据
         const data = [
           {
@@ -169,7 +173,7 @@ class MapCoverLayer extends Component {
 
         // 缩放地图到合适的视野级别
         map.setFitView([...rectangleArr, polygon])
-
+        position = map.getCenter()
         const totalMuney = 1200;
         const curMuney = 222;
         var infoWindow = new AMap.InfoWindow({
@@ -179,17 +183,36 @@ class MapCoverLayer extends Component {
         infoWindow.setAnchor('bottom-center')
         infoWindow.open(map, [116.399055, 39.890753]);
 
-        AMap.plugin([
-          'AMap.ToolBar',
-        ], function () {
-          // 在图面添加工具条控件，工具条控件集成了缩放、平移、定位等功能按钮在内的组合控件
-          map.addControl(new AMap.ToolBar({
-            isCustom: true,
-            autoMove: true,
-            position: "RB",
-            direction: false,
-            ruler: false
-          }));
+        // AMap.plugin('AMap.Geolocation', function () {
+        //   var geolocation = new AMap.Geolocation({
+        //     enableHighAccuracy: true,//是否使用高精度定位，默认:true
+        //     timeout: 10000,          //超过10秒后停止定位，默认：5s
+        //     buttonPosition: 'RB',    //定位按钮的停靠位置
+        //     buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+        //     zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+        //   });
+        //   geolocation.getCurrentPosition(function (status, result) {
+        //     if (status == 'complete') {
+        //       position = result.position;
+        //     } else {
+        //       alert('error')
+        //     }
+        //   });
+        // });
+
+        map.on("complete", () => {
+          this.setState({
+            loading: false
+          })
+          document.querySelector('.btn-locate').addEventListener('click', function () {
+            map.setCenter([position.lng, position.lat])
+          })
+          document.querySelector('.btn-zoom-in').addEventListener('click', function () {
+            map.setZoom(map.getZoom() + 1)
+          })
+          document.querySelector('.btn-zoom-out').addEventListener('click', function () {
+            map.setZoom(map.getZoom() - 1)
+          })
         });
       })
       .catch(err => {
@@ -233,10 +256,18 @@ class MapCoverLayer extends Component {
 
   render() {
     const { mapCoverLayerStore } = this.props; // redux store
-    console.log(mapCoverLayerStore)
+    const { loading } = this.state;
     return (
       <div className={styles.content}>
-        <div id="map-container" style={{ width: 540, height: 540 }}></div>
+        <div className="map-wrapper" style={{ position: "relative" }}>
+          <div id="map-container" style={{ width: 540, height: 540 }}></div>
+          <div className="map-btns" style={{ display: !loading ? "block" : "none" }}>
+            <div className="btn-locate"></div>
+            <div className="btn-zoom-in"></div>
+            <div className="btn-zoom-out"></div>
+          </div>
+        </div>
+
       </div>
     );
   }

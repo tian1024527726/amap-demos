@@ -11,5 +11,58 @@
         display: none;
       }
     }
+
+    .map-wrapper {
+      .map-btns {
+        position: absolute;
+        z-index: 100;
+        bottom: 10px;
+        right: 20px;
+
+        .btn-locate {
+          margin-bottom: 7px;
+          border-radius: 0.2em;
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjI2IiBoZWlnaHQ9IjI2IiBmaWxsPSIjRkZGIiByeD0iMiIvPgogICAgICAgIDxjaXJjbGUgY3g9IjEzIiBjeT0iMTMiIHI9IjMiIGZpbGw9IiM4NzhEOTkiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjRDhEQ0U2IiBkPSJNMTIuNSA1aDF2M2gtMVY1em0wIDEzaDF2M2gtMXYtM3pNNSAxMy41di0xaDN2MUg1em0xMyAwdi0xaDN2MWgtM3oiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjRDhEQ0U2IiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik0xMyAxOGE1IDUgMCAxIDAgMC0xMCA1IDUgMCAwIDAgMCAxMHptMCAxYTYgNiAwIDEgMSAwLTEyIDYgNiAwIDAgMSAwIDEyeiIvPgogICAgPC9nPgo8L3N2Zz4K');
+
+          &:hover {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjI2IiBoZWlnaHQ9IjI2IiBmaWxsPSIjRkZGIiByeD0iMiIvPgogICAgICAgIDxjaXJjbGUgY3g9IjEzIiBjeT0iMTMiIHI9IjMiIGZpbGw9IiMxOTg5RkEiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjOENDNEZDIiBkPSJNMTIuNSA1aDF2M2gtMVY1em0wIDEzaDF2M2gtMXYtM3pNNSAxMy41di0xaDN2MUg1em0xMyAwdi0xaDN2MWgtM3oiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjOENDNEZDIiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik0xMyAxOGE1IDUgMCAxIDAgMC0xMCA1IDUgMCAwIDAgMCAxMHptMCAxYTYgNiAwIDEgMSAwLTEyIDYgNiAwIDAgMSAwIDEyeiIvPgogICAgPC9nPgo8L3N2Zz4K');
+          }
+        }
+
+        .btn-zoom-in {
+          border-bottom: 2px solid rgb(220, 221, 226);
+          border-radius: 0.2em 0.2em 0 0;
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTIgMGgyMmEyIDIgMCAwIDEgMiAydjI0SDBWMmEyIDIgMCAwIDEgMi0yeiIvPgogICAgICAgIDxwYXRoIGZpbGw9IiM4NzhEOTkiIGQ9Ik03IDEyaDEydjJIN3oiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjODc4RDk5IiBkPSJNMTIgN2gydjEyaC0yeiIvPgogICAgPC9nPgo8L3N2Zz4K');
+
+          &:hover {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTIgMGgyMmEyIDIgMCAwIDEgMiAydjI0SDBWMmEyIDIgMCAwIDEgMi0yeiIvPgogICAgICAgIDxwYXRoIGZpbGw9IiMxOTg5RkEiIGQ9Ik03IDEyaDEydjJIN3oiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjMTk4OUZBIiBkPSJNMTIgN2gydjEyaC0yeiIvPgogICAgPC9nPgo8L3N2Zz4K');
+          }
+        }
+
+        .btn-zoom-out {
+          border-radius: 0 0 0.2em 0.2em;
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTAgMGgyNnYyNGEyIDIgMCAwIDEtMiAySDJhMiAyIDAgMCAxLTItMlYweiIvPgogICAgICAgIDxwYXRoIGZpbGw9IiM4NzhEOTkiIGQ9Ik03IDEyaDEydjJIN3oiLz4KICAgIDwvZz4KPC9zdmc+Cg==');
+
+          &:hover {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDI2IDI2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTAgMGgyNnYyNGEyIDIgMCAwIDEtMiAySDJhMiAyIDAgMCAxLTItMlYweiIvPgogICAgICAgIDxwYXRoIGZpbGw9IiMxOTg5RkEiIGQ9Ik03IDEyaDEydjJIN3oiLz4KICAgIDwvZz4KPC9zdmc+Cg==');
+          }
+        }
+
+        .btn-locate,
+        .btn-zoom-in,
+        .btn-zoom-out {
+          width: 30px;
+          height: 30px;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 30px;
+          text-align: center;
+          background-size: contain;
+          background-color: rgb(255, 255, 255);
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 3px;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
