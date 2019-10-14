@@ -9,6 +9,10 @@ let MapInstance = null;
 @inject('MarkerClusterer')
 class MarkerClusterer extends Component {
 
+  state = {
+    loading: true
+  }
+
   componentDidMount() {
     /* 初始化渲染执行之后调用,仅执行一次 */
     const { markerClustererAction: { getUserInfo }, markerClustererStore } = this.props;
@@ -21,6 +25,10 @@ class MarkerClusterer extends Component {
       .then(() => {
         let cluster;
         const markers = [];
+        const position = {
+          lng:  121.38223,
+          lat:  31.23314,
+        }
 
         const map = new AMap.Map("map-container", {
           resizeEnable: true,
@@ -78,22 +86,39 @@ class MarkerClusterer extends Component {
           }
           cluster = new AMap.MarkerClusterer(map, markers, {
             gridSize: 80,
+            // minClusterSize: 10,
             renderClusterMarker: _renderClusterMarker
           });
         }
 
-        AMap.plugin([
-          'AMap.ToolBar',
-        ], function () {
-          // 在图面添加工具条控件，工具条控件集成了缩放、平移、定位等功能按钮在内的组合控件
-          map.addControl(new AMap.ToolBar({
-            isCustom: true,
-            autoMove: true,
-            position: "RB",
-            direction: false,
-            ruler: false
-          }));
+        map.on("complete", () => {
+          this.setState({
+            loading: false
+          })
+          document.querySelector('.btn-locate').addEventListener('click', function () {
+            map.setCenter([position.lng, position.lat])
+          })
+          document.querySelector('.btn-zoom-in').addEventListener('click', function () {
+            map.setZoom(map.getZoom() + 1)
+          })
+          document.querySelector('.btn-zoom-out').addEventListener('click', function () {
+            map.setZoom(map.getZoom() - 1)
+          })
         });
+
+        // AMap.plugin([
+        //   'AMap.ToolBar',
+        // ], function () {
+        //   // 在图面添加工具条控件，工具条控件集成了缩放、平移、定位等功能按钮在内的组合控件
+        //   map.addControl(new AMap.ToolBar({
+        //     isCustom: true,
+        //     autoMove: true,
+        //     locate: true,
+        //     position: "RB",
+        //     direction: false,
+        //     ruler: false
+        //   }));
+        // });
       })
       .catch(err => {
         console.log(err)
@@ -134,9 +159,18 @@ class MarkerClusterer extends Component {
   }
 
   render() {
+    const { loading } = this.state;
+
     return (
       <div className={styles.content}>
-        <div id="map-container" style={{ width: '100%', height: '540px' }}></div>
+        <div className="map-wrapper" style={{ position: "relative" }}>
+          <div id="map-container" style={{ width: '100%', height: 540 }}></div>
+          <div className="map-btns" style={{ display: !loading ? "block" : "none" }}>
+            <div className="btn-locate"></div>
+            <div className="btn-zoom-in"></div>
+            <div className="btn-zoom-out"></div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -233,7 +233,7 @@ class MapCoverLayer extends Component {
       script.charset = 'utf-8';
       script.async = true;
       script.timeout = 120000;
-      script.src = 'https://webapi.amap.com/maps?v=1.4.15&key=dabae8dcd3afd26242a60cd96f17f091&plugin=AMap.RectangleEditor&plugin=AMap.Scale,AMap.OverView,AMap.ToolBar';
+      script.src = 'https://webapi.amap.com/maps?v=1.4.15&key=dabae8dcd3afd26242a60cd96f17f091&plugin=AMap.MarkerClusterer&plugin=AMap.RectangleEditor&plugin=AMap.Scale,AMap.OverView,AMap.ToolBar';
       const timeout = setTimeout(() => {
         reject('加载地图超时！！！！')
       }, 120000);
